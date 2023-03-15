@@ -1,0 +1,40 @@
+package com.junit.demo;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class MathCal {
+ static	MathCalculation mathCal;
+	
+	@BeforeAll
+	static void setUp() {
+		mathCal = new MathCalculation();
+	}
+
+	@Test
+	public void checkAddForPosNos() {
+		
+		
+		int expected =0;
+		int real = mathCal.add(10, 20);	
+		assertEquals(expected, real, "2 Nos add and return result");
+		
+	}
+	@Test
+	public void checkAddForPosAndNos() {
+		
+		
+		int expected =10;
+		int real = mathCal.add(-10, 20);	
+		
+		boolean res = expected == real?true:false;
+		
+		assertTrue(res);
+		
+	}
+
+
+
+}

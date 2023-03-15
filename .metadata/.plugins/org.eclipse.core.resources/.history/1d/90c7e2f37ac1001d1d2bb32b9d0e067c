@@ -1,0 +1,33 @@
+package com.junit.demo;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class MathCal {
+ static	MathCalculation mathCal;
+	
+	@BeforeEach
+	static void setUp() {
+		mathCal = new MathCalculation();
+	}
+
+	@Test
+	public void checkAddForPosNos() {
+		
+		assertAll(
+				()->assertEquals(200, mathCal.add(100, 100)),
+				()->assertEquals(100, mathCal.add(50, 50)),
+				()->assertEquals(20, mathCal.add(10, 10)),
+				()->assertEquals(50, mathCal.add(30, 20))
+				);
+		
+		
+		
+	}
+
+
+
+}

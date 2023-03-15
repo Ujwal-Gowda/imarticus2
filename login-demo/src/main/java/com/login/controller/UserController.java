@@ -1,0 +1,34 @@
+package com.login.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.login.service.UserService;
+
+@RestController
+@CrossOrigin
+public class UserController {
+	
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping("/create")
+	public String createUserData(@RequestParam String userName, String password) {
+		
+		userService.CreateUserLogin(userName, password);
+		
+		return "Successfully created user...";
+		
+	}
+	
+	@RequestMapping("/login")
+	public String checkLogin(@RequestParam String userName, String password) {
+		
+		return userService.checkUserLogin(userName, password);
+		
+	}
+
+}

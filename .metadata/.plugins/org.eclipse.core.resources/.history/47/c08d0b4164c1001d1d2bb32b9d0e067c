@@ -1,0 +1,22 @@
+package com.junit.demo;
+
+import org.junit.jupiter.api.Test;
+
+public class MthCalTest {
+	
+	@Test
+	public void checkAdd() {
+		
+		MathCalculation mathCal = new MathCalculation();
+		int expected =30;
+		int real = mathCal.add(10, 20);
+		
+	
+		
+		
+
+		
+
+	}
+	
+}

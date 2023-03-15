@@ -1,0 +1,45 @@
+package com.junit.demo;
+
+public class MathCalculation {
+	
+	public int add(int a, int b) {
+		
+		return a+b;
+	}
+	public int sub(int a, int b) {
+		
+		return a-b;
+	}
+	public int multiply(int a, int b) {
+		
+		return a*b;
+	}
+	public int div(int a, int b) {
+		
+		return a/b;
+		
+	}
+	public boolean checkPrime(int num) {
+		
+		
+		if(num < 0) num = -1*num;
+		int count = 0;
+		for(int i =1; i<num ; i++) {
+			if(num % i ==0) count++;
+		}
+		if(count ==2)return true;
+		
+			
+			
+		
+		
+		
+		return false;
+	}
+
+
+	
+	
+	
+
+}

@@ -1,0 +1,52 @@
+package com.junit.demo;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class MathCal {
+
+	@Test
+	public void test() {
+		
+		
+		MathCalculation mathCal = new MathCalculation();
+		int expected =30;
+		int real = mathCal.add(10, 20);	
+		assertEquals(expected, real);
+		
+	}
+	@Test
+	public void test1() {
+		
+		
+		MathCalculation mathCal = new MathCalculation();
+		int expected =10;
+		int real = mathCal.sub(20, 10);	
+		assertEquals(expected, real);
+		
+	}
+	@Test
+	public void test2() {
+		
+		
+		MathCalculation mathCal = new MathCalculation();
+		int expected =200;
+		int real = mathCal.multiply(20, 10);	
+		assertEquals(expected, real);
+		
+	}
+	@Test
+	public void test3() {
+		
+		
+		MathCalculation mathCal = new MathCalculation();
+		int expected =20;
+		int real = mathCal.div(20, 10);	
+		
+		boolean res = expected==real?true:false;
+		assertTrue(res);
+	}
+
+
+}

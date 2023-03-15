@@ -1,0 +1,94 @@
+package com.imarticus.demo;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+	//fail("Not yet implemented");
+		
+		import org.junit.jupiter.api.BeforeAll;
+		import org.junit.jupiter.api.BeforeEach;
+
+	import org.springframework.boot.test.context.SpringBootTest;
+		import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.web.client.RestTemplate;
+
+		import com.imarticus.demo.model.Book;
+
+		@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
+
+
+
+   class NewBookSample {
+
+	//@Test
+	//void test() {
+	
+				
+			static	RestTemplate restTemplate;
+						
+				@LocalServerPort
+				int  port;
+				
+				String baseUrl = "http://localhost";
+				
+				@BeforeAll
+				static public void setUp() {
+					
+					restTemplate = new RestTemplate();
+				}
+				
+				@BeforeEach
+				public void initSetUpForURL() {
+					
+					baseUrl =baseUrl.concat(":").concat(""+port).concat("/book");
+					//baseURL = baseURL="+port+"/book"
+			}
+				
+				@Test
+				public void checkBookRecord() {
+					
+					Book book = new Book("C++", "Sagar", 1020);
+					
+					Book newBook = restTemplate.postForObject(baseUrl+"/add", book, Book.class);
+					
+					
+					assertEquals("Sagar", newBook.getAuthor());
+				}
+				
+				@Test
+				@Sql(statements="delete from book",executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+				@Sql(statements="insert into book values(id, name,author,price) values(12, 'Angular','Vijay',2000)",
+				executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+				@Sql(statements="delete from book",executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+				
+				
+				public void checkFindAll() {
+					
+					List<Book> bkList = restTemplate.getForObject(baseUrl+"/all", List.class);
+					assertEquals(1, bkList.size());
+					
+				}
+					@Test
+					@Sql(statements="insert into book values(id, name, author, price) values(12, 'Angular','Vijay',2000)",
+					executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+					@Sql(statements="delete from book",executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+					
+					public void updateBook() {
+						
+						Book book = new Book("C++", "Rahul", 800);
+						
+						restTemplate.put(baseUrl+"/update/12", book);
+						
+						assertEquals("C++", bookRepo.findById(12).get().getName());
+					}
+		
+
+		
+
+
+	}
+
+

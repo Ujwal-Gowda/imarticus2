@@ -1,0 +1,13 @@
+package com.imarticus.demo.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import com.imarticus.demo.model.Book;
+
+@Service
+public interface BookRepo extends JpaRepository<Book, Integer> {
+	
+	
+
+}
